@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>picBazaR</title>
+    <link rel="stylesheet" href="/static/css/signincss.css">
+    <style>
+    </style>
+</head>
+{% block content %}
+<body style="background-image: url('/media/need/pic4.jpg');background-size: cover;font-family: Arial;">
+  <div class="wrap" style="background-color:#A2D9CE;">
+        {% if er_message %}
+        <div class="alert {{message_class}}" role="alert" >{{er_message}}</div>
+            <a style="color:black; align:center;" href="/imageapp/home/"> Home </a>
+            <div style="margin-bottom: 180px;"></div>
+        {% else %}
+    <h3>Uploaded Post</h3>
+    <form method="POST" enctype="multipart/form-data">
+     {% csrf_token %} 
+        {% for f in form %}
+          {{f.label_tag}} {{f}} {{f.errors|striptags}} <br> <br>
+        {% endfor %}
+    <input class="btn" type="submit" value="submit">
+
+    </form>
+    {% endif %}
+  </div>
+<div style="margin-bottom: 180px;">
+  
+</div>
+</body>
+{% endblock %}
+</html>

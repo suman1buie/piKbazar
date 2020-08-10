@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link href="/media/need/ic.ico" rel="shortcut icon"/>
+    <!-- Bootstrap CSS -->
+ <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/magnific-popup.css"/>
+  <link rel="stylesheet" href="/static/css/slicknav.min.css"/>
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css"/>
+
+  <!-- Main Stylesheets -->
+  <link rel="stylesheet" href="/static/css/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <title>picBazaR</title>
+
+    <style>
+    .about{
+        text-indent: 10px;
+        text-shadow: 3px;
+        color: #eee;
+    }
+    .linkk{
+        color: #42a;
+    }
+    .post-img img{
+        max-width: 70%;
+        max-height: 90%;
+        padding: 2px;
+        background: #fff;
+    }
+    .header{
+      max-height: 900px;
+      width: 100%;
+      color: black;
+      background-size: cover;
+    }
+        .container{
+            padding: 10px;
+            margin: 20px;
+            border-radius: 0.5rem;
+            align-content: center;
+            display: grid;
+            grid-template-columns: 65% 33%;
+            grid-auto-rows: minmax(100px,auto)
+
+        }
+        .profile-head{
+            display: inline-grid;
+            align-content: center;
+        }
+        .container > div{
+        align-content: center;
+        background: #fff;
+        padding: 1em;
+        }
+        .container > div:nth-child(odd){
+            background: #eee;
+            align-content: center;
+        }
+    body{
+        background: -webkit-linear-gradient(left, #2F6676, #1ADEB4);
+        max-height: 600px;
+        max-width: auto;
+    }
+      .bg{
+        background: #762F47!important;
+      }
+      .list-group-item.active{
+        background: #762F47!important;
+        border-color: #762F47!important;
+      }
+    #ic{
+      height: 60px;
+      width: 200px;
+    }
+    #hd{
+      height: 100px;
+      background-color: white;
+    }
+    </style>
+
+  </head>
+  <style>
+    /*#st:hover{transform: scale(2,2);transition: .2s transform;}*/
+    #con{
+      max-margin-left: 50px;
+      max-margin-right: 50px;
+      padding: 5px;
+      margin-top:100px;
+    }
+  </style>
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Include the above in your HEAD tag -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header section  -->
+    <header id = "hd" class="header-section hs-bd">
+        <a  href="/" class="site-logo"><img id="ic" src="/media/need/icon.png" alt="logo"></a>
+        <div class="header-controls">
+            <button class="nav-switch-btn"><i class="fa fa-bars"></i></button>
+            <button class="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+        <ul class="main-menu">
+
+            <li><a href="/imageapp/home/">Home</a></li>
+            <li><a href="/imageapp/about/">About Us</a></li>
+            <li>
+                <a href="/imageapp/home/">Select all</a>
+                <ul class="sub-menu">
+                    {% for c in cat  %}
+                    <li><a href="/imageapp/catagory/{{c.pk}}">{{c.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+
+            {% if user.is_superuser %}
+            <li><a href="/admin/">Admin</a></li>
+            <li><a href= "/imageapp/logout/">Log Out</a></li>
+            {% else %}
+                {% if user.is_authenticated %}
+                    <li><a href="/imageapp/upload/">Upload New</a></li>
+                    <li><a href= "/imageapp/logout/">Log Out</a></li>
+                    <li><a href= "/imageapp/viewprofile/{{user.id}}">View Profile</a></li>
+                {% else %}
+                    <li><a href= "/imageapp/signin/">Log In</a></li>
+                    <li><a href= "/imageapp/registers/">Sign Up</a></li>
+                {% endif %}
+            {% endif%}
+
+            <li class="search-mobile">
+                <button class="search-btn"><i class="fa fa-search"></i></button>
+            </li>
+        </ul>
+
+    </header>
+    <div class="clearfix"></div>
+
+
+<header class="header">
+    <div class="container" style="border-radius: 1rem;">
+        <div class="profile-head">
+            <h4 style="text-align:center">Post Pic</h4>
+                <div class="post-img">
+                  <div id="st" class="portfolio-item set-bg" data-setbg="/media/{{posts.image}}"></div>
+                </div>
+            <a href="/imageapp/home/" class="linkk">Home</a>
+        </div>
+
+        <div style="background-color:#FADBD8 ;text-align:center">
+          <h3 style="color:green;">Details</h3>
+          <h5 style="color:darkblack;">Catagory : {{posts.catagory}}</h5><br>
+           descriptions : <h6>{{posts.descriptions}}</h6> <br> 
+            created Date : <h6>{{posts.cr_date}}</h6>
+            
+            <div class="row">
+                    <div class="col-md-12">
+                  Creator :- <a style="max-width:8px;" href="/imageapp/viewprofile/{{posts.uploaded_by.id}}">{{posts.uploaded_by}}</a>
+                  <br>
+                    </div>
+            </div>
+
+            <div id="con" class="row">
+                <div class="col-md-6">
+                  {% if user.is_authenticated %}
+                      {% if posts.uploaded_by.id == user.userprofile.id %}
+                          <a style="margin:5px;" href="../editPost/{{posts.pk}}" class="btn btn-primary">Edit</a>
+                          <a style="margin:5px;" href="../deletePost/{{posts.pk}}" class="btn btn-primary" >Delete</a>
+                      {% endif %}
+                  {% endif %}
+                </div>
+            </div>
+        </div>
+</div>
+
+
+
+<div style="padding-top:90px;">
+</div>
+
+  <!--end coding area-->
+  <footer class="footer-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 order-1 order-md-2">
+          <div class="footer-social-links">
+            <a href=""><i class="fa fa-facebook"></i></a>
+            <a href=""><i class="fa fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="col-md-6 order-2 order-md-1">
+          <div class="copyright">
+
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://github.com/suman1buie" target="_blank">Suman Mandal</a>
+
+        </div>  
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer section end  -->
+
+  <!-- Search model -->
+  <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form action="../search/" class="search-model-form"  method="POST">
+        {% csrf_token %}
+        <input type="text" id="search-input" placeholder="Search here....." name="dowork">
+      </form>
+    </div>
+  </div>
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script src="/static/js/jquery-3.2.1.min.js"></script>
+      <script src="/static/js/bootstrap.min.js"></script>
+      <script src="/static/js/jquery.slicknav.min.js"></script>
+      <script src="/static/js/owl.carousel.min.js"></script>
+      <script src="/static/js/jquery.magnific-popup.min.js"></script>
+      <script src="/static/js/circle-progress.min.js"></script>
+      <script src="/static/js/mixitup.min.js"></script>
+      <script src="/static/js/instafeed.min.js"></script>
+      <script src="/static/js/masonry.pkgd.min.js"></script>
+      <script src="/static/js/main.js"></script>  
+</body>
+</html>

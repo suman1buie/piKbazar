@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>picBazaR</title>
+    <link rel="stylesheet" href="/static/css/signincss.css">
+    <style>
+    </style>
+</head>
+{% block content %}
+<body style="background-image: url('/media/need/pic5.jpg');background-size: cover;font-family: Arial;">
+  <div class="wrap" style="background-color;">
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger" role = "alert">
+                        {{message}}
+                    </div>
+                {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role = "alert">
+                        {{message}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %} 
+    </div>
+    <h2>Sign In</h2>
+    <form method="POST">
+     {% csrf_token %} 
+    <input class="pl" type="text" name="username" placeholder="Username.." required>
+    <input class="pl" type="password" name="password" placeholder="Password" required>
+    <input class="btn" type="submit" value="submit">
+
+    </form>
+    <a href="/imageapp/registers/" class="signup-image-link">Create an account</a>
+  </div>
+
+<div style="margin-bottom: 100px;">
+  
+</div>
+</body>
+{% endblock %}
+</html>

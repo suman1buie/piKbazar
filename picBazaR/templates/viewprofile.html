@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link href="/media/need/ic.ico" rel="shortcut icon"/>
+    <!-- Bootstrap CSS -->
+ <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/magnific-popup.css"/>
+  <link rel="stylesheet" href="/static/css/slicknav.min.css"/>
+  <link rel="stylesheet" href="/static/css/owl.carousel.min.css"/>
+
+  <!-- Main Stylesheets -->
+  <link rel="stylesheet" href="/static/css/style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/style.css"/>
+    <title>picBazaR</title>
+
+    <style>
+    .about{
+        text-indent: 10px;
+        text-shadow: 3px;
+        color: #eee;
+    }
+    .linkk{
+        color: #42a;
+    }
+    .profile-img img{
+        width: 70%;
+        height: 90%;
+        padding: 5px;
+        background: #fff;
+
+    }
+    .header{
+      max-height: 900px;
+      width: 100%;
+      color: black;
+      background-size: cover;
+    }
+        .container{
+            padding: 10px;
+            margin: 20px;
+            border-radius: 0.5rem;
+            align-content: center;
+            display: grid;
+            grid-template-columns: 30% 70%;
+            grid-auto-rows: minmax(100px,auto)
+
+        }
+        .profile-head{
+            display: inline-grid;
+            align-content: center;
+        }
+        .container > div{
+        align-content: center;
+        background: #fff;
+        padding: 1em;
+        }
+        .container > div:nth-child(odd){
+            background: #eee;
+            align-content: center;
+        }
+    body{
+        background: -webkit-linear-gradient(left, #2F6676, #1ADEB4);
+        max-height: 600px;
+        max-width: auto;
+    }
+      .bg{
+        background: #762F47!important;
+      }
+      .list-group-item.active{
+        background: #762F47!important;
+        border-color: #762F47!important;
+      }
+    #ic{
+      height: 60px;
+      width: 200px;
+    }
+    #hd{
+      height: 100px;
+      background-color: white;
+    }
+    </style>
+
+  </head>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Include the above in your HEAD tag -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header section  -->
+    <header id = "hd" class="header-section hs-bd">
+        <a  href="/" class="site-logo"><img id="ic" src="/media/need/icon.png" alt="logo"></a>
+        <div class="header-controls">
+            <button class="nav-switch-btn"><i class="fa fa-bars"></i></button>
+            <button class="search-btn"><i class="fa fa-search"></i></button>
+        </div>
+        <ul class="main-menu">
+
+            <li><a href="/imageapp/home/">Home</a></li>
+            <li><a href="/imageapp/about/">About Us</a></li>
+            <li>
+                <a href="/imageapp/home/">Select All</a>
+            </li>
+
+            {% if user.is_superuser %}
+            <li><a href="/admin/">Admin</a></li>
+            <li><a href= "/imageapp/logout/">Log Out</a></li>
+            {% else %}
+                {% if user.is_authenticated %}
+                    <li><a href="/imageapp/upload/">Upload New</a></li>
+                    <li><a href= "/imageapp/logout/">Log Out</a></li>
+                    <li><a href= "/imageapp/viewprofile/{{user.id}}">View Profile</a></li>
+                {% else %}
+                    <li><a href= "/imageapp/signin/">Log In</a></li>
+                    <li><a href= "/imageapp/registers/">Sign Up</a></li>
+                {% endif %}
+            {% endif%}
+
+            <li class="search-mobile">
+                <button class="search-btn"><i class="fa fa-search"></i></button>
+            </li>
+        </ul>
+
+    </header>
+    <div class="clearfix"></div>
+
+
+<header class="header">
+    <div class="container" style="border-radius: 1rem;">
+        <div class="profile-head">
+            <h4 style="text-align:center">Profile Pic</h4>
+                <div class="profile-img">
+                    {% if flag == False %}
+                        <img src="/media/profileImage/headshot.jpg" alt=""/>
+                        {% else %}
+                        <img src="/media/{{alldetail.profile_pic}}" alt=""/>
+                        {% endif %}
+                </div>
+            {% if user.is_authenticated %}
+                {% if alldetail.id == user.userprofile.id %}
+                    <a href="/imageapp/editprofile/{{user.userprofile.id}}" class="linkk">Edit Profile</a>
+                {% endif %}
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a href="/imageapp/singleview/{{alldetail.id}}" class="linkk">Posts</a><br/>
+            {% endif %}
+            <a href="/imageapp/home/" class="linkk">Home</a>
+        </div>
+        <div>
+            <h5>{{alldetail.first_name}} {{alldetail.last_name}}</h5>
+            <h6>{{alldetail.description}}</h6> <br> <br>
+            <h3 style="color:green;">About</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <label style="color:black;">User Id</label>
+                </div>
+                    <div class="col-md-6">
+                        <p style="color:blue;">{{alldetail.user}}</p>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label style="color:black;">Name</label>
+                </div>
+                <div class="col-md-6">
+                    <p style="color:blue;">{{alldetail.first_name}} {{alldetail.last_name}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label style="color:black;">Email</label>
+                </div>
+                    <div class="col-md-6">
+                        <p style="color:blue;">{{alldetail.email}}</p>
+                    </div>
+            </div>
+        {% if f1 == True %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label style="color:black;">Socail Link</label>
+                </div>
+                    <div class="col-md-6">
+                        <a href="https://www.{{alldetail.socal_link}}" style="color:blue;">{{alldetail.socal_link}}</a>
+                    </div>
+            </div>
+        {% endif %}
+            <div class="row">
+                <div class="col-md-6">
+                    <label style="color:black;">Phone No</label>
+                </div>
+                    <div class="col-md-6">
+                        <p style="color:blue;">{{alldetail.ph_no}}</p>
+                    </div>
+            </div>
+
+        </div>
+</header>
+
+<div style="padding-top:130px;">
+</div>
+
+  <!--end coding area-->
+  <footer class="footer-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 order-1 order-md-2">
+          <div class="footer-social-links">
+            <a href=""><i class="fa fa-facebook"></i></a>
+            <a href=""><i class="fa fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="col-md-6 order-2 order-md-1">
+          <div class="copyright">
+
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Suman Mandal</a>
+
+        </div>  
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer section end  -->
+
+  <!-- Search model -->
+  <div class="search-model">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form action="../search/" class="search-model-form"  method="POST">
+        {% csrf_token %}
+        <input type="text" id="search-input" placeholder="Search here....." name="dowork">
+      </form>
+    </div>
+  </div>
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script src="/static/js/jquery-3.2.1.min.js"></script>
+      <script src="/static/js/bootstrap.min.js"></script>
+      <script src="/static/js/jquery.slicknav.min.js"></script>
+      <script src="/static/js/owl.carousel.min.js"></script>
+      <script src="/static/js/jquery.magnific-popup.min.js"></script>
+      <script src="/static/js/circle-progress.min.js"></script>
+      <script src="/static/js/mixitup.min.js"></script>
+      <script src="/static/js/instafeed.min.js"></script>
+      <script src="/static/js/masonry.pkgd.min.js"></script>
+      <script src="/static/js/main.js"></script>  
+</body>
+</html>

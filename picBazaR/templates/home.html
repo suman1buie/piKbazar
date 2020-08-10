@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>picBazaR</title>
+</head>
+<body>
+
+{% block content %}
+
+<div class="container">
+	{% if messages %}
+	    {% for message in messages %}
+	    	{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+	    		<div class="alert alert-danger" role = "alert">
+	    			{{message}}
+	    		</div>
+	    	{% endif %}
+	    	{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+	    		<div class="alert alert-success" role = "alert">
+	    			{{message}}
+	    		</div>
+	    	{% endif %}
+	    {% endfor %}
+	{% endif %} 
+</div>
+
+<div class="portfolio-2-section">
+    <ul class="portfolio-filter pf-2 controls">
+      <li class="control" data-filter="all"><a style="color: black;" href="/imageapp/home/">All</a></li>
+      {% for c in cat  %}
+      <li class="control" data-filter=".nature"><a style="color: black;" href="../catagory/{{c.pk}}">{{c.title}}</a></li>
+      {% endfor %}
+    </ul>
+
+    <div class="portfolio-warp">
+      <div class="row portfolio-gallery m-0">
+        {% for im in imagess %}
+        <div class="mix col-lg-4 col-sm-6 p-0 nature">
+          <div class="portfolio-box">
+            <div id="st" class="portfolio-item set-bg" data-setbg="/media/{{im.image}}"></div>
+            <h6>{{im.descriptions}}</h6>
+            <p><a href="/imageapp/viewprofile/{{im.uploaded_by.id}}">{{im.uploaded_by}}</a></p>
+            <a href="/imageapp/viewpost/{{im.pk}}" class="btn btn-primary" >View</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if l %}
+    <div style="padding-top:200px;">
+        <h6 style="text-align:center;">Sorry No item Found </h6>
+        <h3 style="text-align:center;">:(</h3>
+    </div>
+    {% endif %}
+    <div class="text-center">
+      <!--<button class="site-btn">Load More</button>-->
+    </div>
+  </div>
+
+  <div style="padding-bottom:20px;" class="container">
+    <h5 style="text-align-last: left;">Pages :
+    {% for page in total_page %}
+      {% if page == pag %}
+        <a style="color:red;" href="/imageapp/page/{{page}}">{{page}}</a>
+      {% else %}
+         <a href="/imageapp/page/{{page}}">{{page}}</a>
+      {% endif %}
+    {% endfor %}
+    </h5>
+  </div>
+  {% endblock %}
+</body>
+</html>
+
+<!--{% if user.is_authenticated %}
+{% if im.uploaded_by.id == user.userprofile.id or user.is_superuser == True %}
+<a href="../editPost/{{im.pk}}" class="btn btn-primary" >Edit</a>
+<a href="../deletePost/{{im.pk}}" class="btn btn-primary" >Delete</a>
+{% endif %}
+{% endif %}
+<a href="#" class="btn btn-primary">View</a>-->

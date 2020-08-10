@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>picBazaR</title>
+    <link rel="stylesheet" href="/static/css/signincss.css">
+    <style>
+    </style>
+</head>
+{% block content %}
+
+
+
+<body style="background-image: url('/media/need/pic1.jpg');background-size: cover;font-family: Arial;">
+  <div style="max-width:500px;background-color:#FADBD8 ;" class="wrap" >
+    <h2>Updete Profile</h2>
+    <form method="POST" enctype="multipart/form-data">
+     {% csrf_token %} 
+        {% for f in form %}
+          {{f.label_tag}}     {{f}} {{f.errors|striptags}} <br> <br>
+        {% endfor %}
+    <input class="btn" type="submit" value="submit">
+    <h6><a href="/imageapp/viewprofile/{{user.id}}">back</a></h6>
+    </form>
+  </div>
+<div style="margin-bottom: 120px;">
+  
+</div>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>picBazaR</title>
+    <link rel="stylesheet" href="/static/css/signincss.css">
+    <style>
+    </style>
+</head>
+{% block content %}
+<body style="background-image: url('/media/need/pic3.jpg');background-size: cover;font-family: Arial;">
+  <div class="wrap" >
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div class="alert alert-danger" role = "alert">
+                        {{message}}
+                    </div>
+                {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                    <div class="alert alert-success" role = "alert">
+                        {{message}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %} 
+    </div>
+    <h2>Sign Up</h2>
+    <form method="POST">
+     {% csrf_token %} 
+    <input class="pl" type="text" name="username" placeholder="Username.." required>
+    <input class="pl" type="text" name="first_name" placeholder="First Name.." required>
+    <input class="pl" type="text" name="last_name" placeholder="Last Name.." required>
+    <input class="pl" type="email" name="email" placeholder="Email Id .." required>
+    <input class="pl" type="password" name="password1" placeholder="Password.." required>
+    <input class="pl" type="password" name="password2" placeholder="Repeat your password.." required>
+    <input class="btn" type="submit" value="submit">
+    </form>
+    <a href="/imageapp/signin/" class="signup-image-link">Have an account</a>
+
+  </div>
+<div>
+  
+</div>
+</body>
+{% endblock %}
+</html>
