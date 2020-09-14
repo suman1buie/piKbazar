@@ -1,6 +1,7 @@
 # piKbazar
-<img alt="GitHub" src="http://pibazar.pythonanywhere.com/">
+
 This project was done by me a Devoloper.
+<h3>Project Live at</h3> : http://pibazar.pythonanywhere.com/
 
 <h2>Assignment Problem Statement:</h2>
 
@@ -33,7 +34,6 @@ This project was done by me a Devoloper.
     <li>JavaScript</li>
 </ul>
     
-
   
 <h2>Note :</h2>
 
