@@ -1,6 +1,6 @@
 # piKbazar
 
-This project was done by me a Devoloper.
+This project was done by me for helping Out Those people Who love Photograph, Animation and Drawing . 
 <h3>Project Live at</h3> : http://pibazar.pythonanywhere.com/
 
 <h2>Assignment Problem Statement:</h2>
